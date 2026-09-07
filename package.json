@@ -1,5 +1,5 @@
 {
-  "name": "@quartz-community/plugin-template",
+  "name": "quartz_randomNote",
   "version": "0.1.0",
   "description": "Template repository for Quartz community plugins.",
   "type": "module",
@@ -67,10 +67,11 @@
     }
   },
   "dependencies": {
-    "@quartz-community/types": "github:quartz-community/types",
-    "@quartz-community/utils": "github:quartz-community/utils"
+    "@quartz-community/types": "0.3.0",
+    "@quartz-community/utils": "0.1.1"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.0",
     "@types/hast": "^3.0.4",
     "@types/mdast": "^4.0.4",
     "@types/node": "^24.10.0",
@@ -93,32 +94,22 @@
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0",
     "vfile": "^6.0.3",
-    "vitest": "^2.1.9",
-    "@changesets/cli": "^2.29.0"
+    "vitest": "^5.0.0"
   },
   "quartz": {
-    "name": "plugin-template",
-    "displayName": "Plugin Template",
-    "category": "transformer",
+    "name": "random-page",
+    "displayName": "Random Page",
+    "category": "component",
     "version": "1.0.0",
     "quartzVersion": ">=5.0.0",
     "dependencies": [],
     "defaultOrder": 50,
     "defaultEnabled": true,
     "defaultOptions": {},
-    "optionSchema": {
-      "highlightToken": {
-        "type": "enum",
-        "values": [
-          "==",
-          "**",
-          "~~"
-        ]
-      }
-    },
+    "optionSchema": {},
     "components": {
-      "ExampleComponent": {
-        "displayName": "Example Component",
+      "RandomPage": {
+        "displayName": "Random Page",
         "defaultPosition": "right",
         "defaultPriority": 50
       }
