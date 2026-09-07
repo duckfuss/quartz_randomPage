@@ -105,8 +105,18 @@
     "dependencies": [],
     "defaultOrder": 50,
     "defaultEnabled": true,
-    "defaultOptions": {},
-    "optionSchema": {},
+    "defaultOptions": {
+      "excludeTags": [],
+      "excludePathPrefixes": []
+    },
+    "optionSchema": {
+      "excludeTags": {
+        "type": "array"
+      },
+      "excludePathPrefixes": {
+        "type": "array"
+      }
+    },
     "components": {
       "RandomPage": {
         "displayName": "Random Page",

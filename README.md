@@ -51,6 +51,30 @@ plugins:
       highlightToken: "=="
 ```
 
+### Random page component
+
+Add the component to a Quartz layout, with optional exclusions for frontmatter tags
+and folder-like slug paths:
+
+```ts
+import { RandomPage } from "quartz_randomNote/components";
+
+export default {
+  components: {
+    right: [
+      RandomPage({
+        excludeTags: ["private", "draft"],
+        excludePathPrefixes: ["tags", "folders", "archive"],
+      }),
+    ],
+  },
+};
+```
+
+`excludeTags` omits pages whose frontmatter contains one of the listed tags.
+`excludePathPrefixes` omits a matching slug and all of its descendants, so `tags`
+excludes both `tags` and `tags/example`.
+
 If you need to use the plugin in `quartz.ts` for advanced overrides:
 
 ```ts

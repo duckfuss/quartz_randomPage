@@ -1,5 +1,6 @@
 import { QuartzComponent } from '@quartz-community/types';
 export { default as RandomPage } from '../index.js';
+export { RandomPageOptions } from '../types.js';
 
 interface ExampleComponentOptions {
     prefix?: string;

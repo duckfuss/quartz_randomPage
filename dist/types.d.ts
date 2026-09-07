@@ -38,5 +38,11 @@ interface ExampleComponentOptions {
     /** CSS class name to apply */
     className?: string;
 }
+interface RandomPageOptions {
+    /** Exclude pages whose frontmatter contains any of these tags. */
+    excludeTags?: string[];
+    /** Exclude pages whose slug starts with any of these path prefixes. */
+    excludePathPrefixes?: string[];
+}
 
-export type { ExampleComponentOptions, ExampleEmitterOptions, ExampleFilterOptions, ExampleTransformerOptions };
+export type { ExampleComponentOptions, ExampleEmitterOptions, ExampleFilterOptions, ExampleTransformerOptions, RandomPageOptions };

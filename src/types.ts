@@ -60,3 +60,10 @@ export interface ExampleComponentOptions {
   /** CSS class name to apply */
   className?: string;
 }
+
+export interface RandomPageOptions {
+  /** Exclude pages whose frontmatter contains any of these tags. */
+  excludeTags?: string[];
+  /** Exclude pages whose slug starts with any of these path prefixes. */
+  excludePathPrefixes?: string[];
+}

@@ -101,9 +101,24 @@ function resolveRelative(current, target) {
 var script_inline_default = 'function d(){let e=document.getElementById("random-page-btn");if(e){let n=JSON.parse(e.getAttribute("data-urls")||"[]"),t=()=>{n.length>0&&(window.location.href=n[Math.floor(Math.random()*n.length)])};e.addEventListener("click",t),window.addCleanup(()=>e.removeEventListener("click",t))}}document.addEventListener("nav",d);document.addEventListener("render",d);\n';
 
 // src/index.tsx
-var RandomPage = () => {
+var hasExcludedTag = (tags, excludedTags) => {
+  const pageTags = Array.isArray(tags) ? tags : typeof tags === "string" ? [tags] : [];
+  return pageTags.some((tag) => typeof tag === "string" && excludedTags.has(tag));
+};
+var hasExcludedPath = (slug2, excludedPrefixes) => {
+  const normalizedSlug = slug2.replace(/^\/+/, "");
+  return excludedPrefixes.some((prefix) => {
+    const normalizedPrefix = prefix.replace(/^\/+|\/+$/g, "");
+    return normalizedSlug === normalizedPrefix || normalizedSlug.startsWith(`${normalizedPrefix}/`);
+  });
+};
+var RandomPage = (options = {}) => {
+  const excludedTags = new Set(options.excludeTags ?? []);
+  const excludedPrefixes = options.excludePathPrefixes ?? [];
   const Component = ({ fileData, allFiles }) => {
-    const validSlugs = allFiles.filter((f3) => f3.slug && f3.slug !== "404").map((f3) => resolveRelative(fileData.slug, f3.slug));
+    const validSlugs = allFiles.filter(
+      (f3) => f3.slug && f3.slug !== "404" && !hasExcludedTag(f3.frontmatter?.tags, excludedTags) && !hasExcludedPath(f3.slug, excludedPrefixes)
+    ).map((f3) => resolveRelative(fileData.slug, f3.slug));
     return /* @__PURE__ */ u2("button", { id: "random-page-btn", "data-urls": JSON.stringify(validSlugs), children: "Surprise Me!" });
   };
   Component.afterDOMLoaded = script_inline_default;
